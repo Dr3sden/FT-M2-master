@@ -22,7 +22,7 @@ console.log(createdBy.innerHTML);
 class ToDo{
   // Tu código acá:
   constructor(description){
-    this.description=description;
+    this.description = description;
     this.complete = false;
   }
 }
@@ -61,16 +61,29 @@ function buildToDo(todo, index) {
   //todo = new ToDo();
   //var indice = index;
 
+  //crea el elmento div en la variable todoshell
   var toDoShell = document.createElement('div');
+
+  //se asigna a todoshell la clase todoshell
   toDoShell.setAttribute('class','toDoShell');
+  //crea un elemento span y se asigna en la variable todotext
   var toDoText = document.createElement('span');
+
+  //asigna el texto de description a todotext
   toDoText.innerHTML = todo.description;
 
+  //se asigna el id index a todotext
   toDoText.setAttribute('id',index);
+
+
+  //si es true, se le asigna la classe completetext
   if(todo.complete){
     toDoText.setAttribute('class','completeText');
   }
+
   toDoText.addEventListener('click', completeToDo);
+  
+  //se agrega todotext como hijo de todoshell
   toDoShell.appendChild(toDoText);
   return toDoShell;
 }
@@ -98,9 +111,13 @@ function buildToDos(toDos) {
 
 function displayToDos() {
   // Tu código acá:
+  //selecciona el elemento todocontainer por id
   var toDoContainer = document.getElementById('toDoContainer');
+  //se setea su inner como vacio
   toDoContainer.innerHTML = "";
+
   var a = buildToDos(toDoItems);
+  //se agrega cada elemento a conteiner como hijo
   for(var i=0; i<a.length; i++){
     toDoContainer.appendChild(a[i]);
   }
@@ -118,11 +135,16 @@ function displayToDos() {
 
 function addToDo() {
   // Tu código acá:
+  //se guarda el valor de input en value
   var value = document.getElementById('toDoInput').value;
+  //se crea el nuevo objeto tudu
   var tudu = new ToDo(value);
+  //se agrega al array de todoitems
   toDoItems.push(tudu);
+  //se setea el valor de input como string vacio
   var inp = document.getElementById('toDoInput');
   inp.value = "";
+  //se llama la func para actualizar en pantalla
   displayToDos();
 }
 
